@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  serverExternalPackages: ['undici'],
   webpack: (config, { isServer }) => {
     if (isServer) {
       // Exclude undici from server-side bundle
@@ -9,9 +9,6 @@ const nextConfig = {
       config.externals.push('undici');
     }
     return config;
-  },
-  experimental: {
-    serverComponentsExternalPackages: ['undici']
   }
 }
 
